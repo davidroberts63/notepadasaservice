@@ -27,6 +27,7 @@
             padding-left: 5px;
             padding-right: 5px;
         }
+
         #textEntry {
             border: 1px solid blue;
             flex: 1;
@@ -35,6 +36,21 @@
 
         #textEntry > textarea {
             flex: 1;
+        }
+
+        .submenu {
+            display: block;
+            position: absolute;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            padding: 0px;
+            border: 1px solid red;
+            background: rgb(189,189,189);
+        }
+
+        .submenu li.separator {
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -48,7 +64,19 @@
     </div>
 
     <ul id="mainMenu">
-        <li>File</li>
+        <li><span class="shortcut">F</span><span class="item">ile</span>
+            <ul class="submenu">
+                <li>New</li>
+                <li>Open...</li>
+                <li>Save</li>
+                <li>Save As...</li>
+                <li class="separator"></li>
+                <li>Page Setup...</li>
+                <li>Print...</li>
+                <li class="separator"></li>
+                <li>Exit</li>
+            </ul>
+        </li>
         <li>Edit</li>
         <li>Search</li>
         <li>Help</li>
