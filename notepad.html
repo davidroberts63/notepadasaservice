@@ -1,0 +1,174 @@
+<html>
+<head>
+    <title>Untitled - Notepad</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            background: rgb(189,189,189);
+            font-family: "MS Sans Serif", sans-serif;
+        }
+
+        #titleBar {
+            color: white;
+            background: rgb(0, 0, 123);
+            border-bottom: 1px solid rgb(115,115,165);
+            border-left: 1px solid rgb(115,115,165);
+        }
+
+        #icon {
+            content: url("logo.png");
+            width: 16px;
+            height: 16px;
+        }
+
+        #mainMenu {
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            padding: 0px;
+            margin: 0px;
+            border-top: 1px solid rgb(206,206,198);
+        }
+
+        #mainMenu > li {
+            padding-left: 5px;
+            padding-right: 5px;
+            border: 1px solid rgb(189,189,189);
+        }
+
+        #mainMenu > li:hover {
+            border: 1px solid rgb(165,165,165);
+            cursor: default;
+        }
+
+        #textEntry {
+            flex: 1;
+            display: flex;
+            border-top: 1px solid rgb(173,173,165);
+            border-left: 1px solid rgb(173,173,165);
+        }
+
+        #textEntry > textarea {
+            flex: 1;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            list-style-type: none;
+            flex-direction: column;
+            padding: 0px;
+            
+            border: 2px outset rgb(173,173,165);
+
+            background: rgb(189,189,189);
+        }
+
+        .show-submenu {
+            display: flex;
+        }
+
+        .submenu li.separator {
+            border: 1px inset rgb(173,173,165);
+        }
+
+        .submenu li:hover {
+            color: white;
+            background: rgb(0, 0, 123);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="titleBar">
+        <span id="icon"></span>
+        <span id="documentName">Untitled</span>
+        <span id="documentSeparator">-</span>
+        <span id="title">Notepad</span>
+    </div>
+
+    <ul id="mainMenu">
+        <li>File
+            <ul class="submenu">
+                <li>New</li>
+                <li>Open...</li>
+                <li>Save</li>
+                <li>Save As...</li>
+                <li class="separator"></li>
+                <li>Page Setup...</li>
+                <li>Print...</li>
+                <li class="separator"></li>
+                <li>Exit</li>
+            </ul>
+        </li>
+        <li>Edit
+            <ul class="submenu">
+                <li>Undo</li>
+                <li class="separator"></li>
+                <li>Cut</li>
+                <li>Copy</li>
+                <li>Paste</li>
+                <li>Delete</li>
+                <li class="separator"></li>
+                <li>Find</li>
+                <li>Find Next</li>
+                <li>Replace</li>
+                <li>Goto</li>
+                <li class="separator"></li>
+                <li>Select All</li>
+                <li>Time/Date</li>
+            </ul>
+        </li>
+        <li>Format
+            <ul class="submenu">
+                <li>Word wrap</li>
+                <li>Font</li>
+            </ul>
+        </li>
+        <li>
+            View
+            <ul class="submenu">
+                <li>Status Bar</li>
+            </ul>
+        </li>
+        <li>Help
+            <ul class="submenu">
+                <li>View Help</li>
+                <li class="separator"></li>
+                <li>About Notepad As A Service</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div id="textEntry">
+        <textarea id="textInput"></textarea>
+    </div>
+
+</body>
+
+<script>
+
+    window.onclick = function(e) {
+        if(!event.target.closest("#mainMenu > li")) {
+            console.log("You clicked off the menu");
+            document.querySelectorAll("ul.submenu").forEach(function(x) { x.classList.remove("show-submenu"); });
+        }
+    }
+
+    document.querySelectorAll("#mainMenu > li").forEach(function(e) {
+        e.onclick = function(e) {
+            console.log("Clicked %O", e.target);
+            e.stopPropagation();
+            document.querySelectorAll("ul.submenu").forEach(function(x) { x.classList.remove("show-submenu"); });
+            
+            var submenu = e.target.querySelector("ul");
+            if(submenu) {
+                e.target.querySelector("ul").classList.toggle("show-submenu");
+            }
+        }
+    });
+</script>
+</head>
