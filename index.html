@@ -132,11 +132,24 @@
 </body>
 
 <script>
+
+    window.onclick = function(e) {
+        if(!event.target.closest("#mainMenu > li")) {
+            console.log("You clicked off the menu");
+            document.querySelectorAll("ul.submenu").forEach(function(x) { x.classList.remove("show-submenu"); });
+        }
+    }
+
     document.querySelectorAll("#mainMenu > li").forEach(function(e) {
         e.onclick = function(e) {
             console.log("Clicked %O", e.target);
+            e.stopPropagation();
             document.querySelectorAll("ul.submenu").forEach(function(x) { x.classList.remove("show-submenu"); });
-            e.target.querySelector("ul").classList.toggle("show-submenu");
+            
+            var submenu = e.target.querySelector("ul");
+            if(submenu) {
+                e.target.querySelector("ul").classList.toggle("show-submenu");
+            }
         }
     });
 </script>
