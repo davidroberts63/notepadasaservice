@@ -26,6 +26,12 @@
         #mainMenu > li {
             padding-left: 5px;
             padding-right: 5px;
+            border: 1px solid rgb(189,189,189);
+        }
+
+        #mainMenu > li:hover {
+            border: 1px solid rgb(165,165,165);
+            cursor: context-menu;
         }
 
         #textEntry {
@@ -39,14 +45,17 @@
         }
 
         .submenu {
-            display: block;
+            display: none;
             position: absolute;
             list-style-type: none;
-            display: flex;
             flex-direction: column;
             padding: 0px;
             border: 1px solid red;
             background: rgb(189,189,189);
+        }
+
+        .show-submenu {
+            display: flex;
         }
 
         .submenu li.separator {
@@ -64,7 +73,7 @@
     </div>
 
     <ul id="mainMenu">
-        <li><span class="shortcut">F</span><span class="item">ile</span>
+        <li>File
             <ul class="submenu">
                 <li>New</li>
                 <li>Open...</li>
@@ -77,9 +86,43 @@
                 <li>Exit</li>
             </ul>
         </li>
-        <li>Edit</li>
-        <li>Search</li>
-        <li>Help</li>
+        <li>Edit
+            <ul class="submenu">
+                <li>Undo</li>
+                <li class="separator"></li>
+                <li>Cut</li>
+                <li>Copy</li>
+                <li>Paste</li>
+                <li>Delete</li>
+                <li class="separator"></li>
+                <li>Find</li>
+                <li>Find Next</li>
+                <li>Replace</li>
+                <li>Goto</li>
+                <li class="separator"></li>
+                <li>Select All</li>
+                <li>Time/Date</li>
+            </ul>
+        </li>
+        <li>Format
+            <ul class="submenu">
+                <li>Word wrap</li>
+                <li>Font</li>
+            </ul>
+        </li>
+        <li>
+            View
+            <ul class="submenu">
+                <li>Status Bar</li>
+            </ul>
+        </li>
+        <li>Help
+            <ul class="submenu">
+                <li>View Help</li>
+                <li class="separator"></li>
+                <li>About Notepad As A Service</li>
+            </ul>
+        </li>
     </ul>
 
     <div id="textEntry">
@@ -87,4 +130,14 @@
     </div>
 
 </body>
+
+<script>
+    document.querySelectorAll("#mainMenu > li").forEach(function(e) {
+        e.onclick = function(e) {
+            console.log("Clicked %O", e.target);
+            document.querySelectorAll("ul.submenu").forEach(function(x) { x.classList.remove("show-submenu"); });
+            e.target.querySelector("ul").classList.toggle("show-submenu");
+        }
+    });
+</script>
 </head>
