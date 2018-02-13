@@ -14,6 +14,8 @@
         #titleBar {
             color: white;
             background: rgb(0, 0, 123);
+            border-bottom: 1px solid rgb(115,115,165);
+            border-left: 1px solid rgb(115,115,165);
         }
 
         #icon {
@@ -28,7 +30,7 @@
             flex-direction: row;
             padding: 0px;
             margin: 0px;
-            border: 1px solid green;
+            border-top: 1px solid rgb(206,206,198);
         }
 
         #mainMenu > li {
@@ -43,9 +45,10 @@
         }
 
         #textEntry {
-            border: 1px solid blue;
             flex: 1;
             display: flex;
+            border-top: 1px solid rgb(173,173,165);
+            border-left: 1px solid rgb(173,173,165);
         }
 
         #textEntry > textarea {
@@ -58,7 +61,9 @@
             list-style-type: none;
             flex-direction: column;
             padding: 0px;
-            border: 1px solid red;
+            
+            border: 2px outset rgb(173,173,165);
+
             background: rgb(189,189,189);
         }
 
@@ -67,7 +72,12 @@
         }
 
         .submenu li.separator {
-            border: 1px solid black;
+            border: 1px inset rgb(173,173,165);
+        }
+
+        .submenu li:hover {
+            color: white;
+            background: rgb(0, 0, 123);
         }
     </style>
 </head>
