@@ -8,6 +8,7 @@
             flex-direction: column;
             align-items: stretch;
             background: rgb(189,189,189);
+            font-family: "MS Sans Serif", sans-serif;
         }
 
         #titleBar {
@@ -15,11 +16,18 @@
             background: rgb(0, 0, 123);
         }
 
+        #icon {
+            content: url("logo.png");
+            width: 16px;
+            height: 16px;
+        }
+
         #mainMenu {
             list-style-type: none;
             display: flex;
             flex-direction: row;
             padding: 0px;
+            margin: 0px;
             border: 1px solid green;
         }
 
@@ -66,7 +74,7 @@
 
 <body>
     <div id="titleBar">
-        <span id="icon">D</span>
+        <span id="icon"></span>
         <span id="documentName">Untitled</span>
         <span id="documentSeparator">-</span>
         <span id="title">Notepad</span>
